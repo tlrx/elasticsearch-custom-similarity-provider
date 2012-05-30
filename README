@@ -1,0 +1,22 @@
+h1. A custom SimilarityProvider example for Elasticseach
+
+This plugin contains a custom @Similarity@ class that can be used in an index:
+
+<pre>
+curl -XPOST 'http://host:port/tweeter/' -d '
+{
+  "settings": {
+    "similarity": {
+      "index": {
+        "type": "org.elasticsearch.index.similarity.CustomSimilarityProvider"
+      },
+      "search": {
+        "type": "org.elasticsearch.index.similarity.CustomSimilarityProvider"
+      }
+    }
+  }
+}'
+</pre> 
+
+Enjoy
+
