@@ -1,21 +1,29 @@
 h1. A custom SimilarityProvider example for Elasticseach
 
-This plugin contains a custom @Similarity@ class that can be used in an index:
+This plugin contains a custom @Similarity@ class that can be used as follows.
+
+Build the plugin with maven, then put the jar file into @$ES_PATH/lib@.
+
+Then, declare it in the settings section of your index:
 
 <pre>
-curl -XPOST 'http://host:port/tweeter/' -d '
-{
-  "settings": {
-    "similarity": {
-      "index": {
-        "type": "org.elasticsearch.index.similarity.CustomSimilarityProvider"
-      },
-      "search": {
-        "type": "org.elasticsearch.index.similarity.CustomSimilarityProvider"
-      }
+"settings" : {
+  "similarity" : {
+    "my_similarity" : {
+      "type" : "org.elasticsearch.index.similarity.CustomSimilarityProvider"
     }
   }
-}'
+}
+</pre> 
+
+After that, you can refer to @my_similarity@ when defining fields:
+
+<pre>
+"book" : {
+  "properties" : {
+    "title" : { "type" : "string", "similarity" : "my_similarity" }
+  }
+}
 </pre> 
 
 Enjoy
