@@ -1,6 +1,6 @@
 package org.elasticsearch.index.similarity;
 
-import org.apache.lucene.search.DefaultSimilarity;
+import org.apache.lucene.search.similarities.DefaultSimilarity;
 
 /**
  * Custom similarity class
@@ -12,7 +12,7 @@ import org.apache.lucene.search.DefaultSimilarity;
 public class CustomSimilarity extends DefaultSimilarity {
 
 	@Override
-	public float idf(int docFreq, int numDocs) {
+	public float idf(long docFreq, long numDocs) {
 		return 1.0f;
 	}
 }
